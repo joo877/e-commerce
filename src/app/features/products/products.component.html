@@ -1,0 +1,39 @@
+<section class="pt-5">
+  <input
+    [(ngModel)]="text"
+    class="placeholder:text-green-500 placeholder:italic ... block mx-auto my-3 w-1/2 border-2 border-green-600 rounded-2xl py-2 px-1.5"
+    placeholder="   Search for product...  "
+    type="search"
+  />
+
+  <div class="contanier mx-auto">
+    <div class="p-2 my-3 text-center">
+      <pagination-controls
+        class="my-pagination"
+        id="foo"
+        (pageChange)="getAllproductData($event)"
+      >
+      </pagination-controls>
+    </div>
+
+    <div
+      class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 p-4"
+    >
+      @for ( product of allData | paginate: { id: 'foo', itemsPerPage: pageSize,
+      currentPage: p, totalItems: total } |search:text ; track product._id) {
+
+      <app-card [product]="product" />
+
+      }
+    </div>
+
+    <div class="p-2 my-3 text-center">
+      <pagination-controls
+        class="my-pagination"
+        id="foo"
+        (pageChange)="getAllproductData($event)"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+<!-- <div class="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 p-5">
+  @for (item of userItem ; track $index) { @for (userProduct of item.cartItems;
+  track userProduct._id) {
+  <div
+    class="card border-1 gap-5 p-4 border-green-500 hover:shadow-lg hover: shadow-green-800 cursor-pointer transition-all duration-200 rounded-3xl"
+  >
+    <img
+      class="w-full"
+      [src]="userProduct.product.imageCover"
+      [alt]="userProduct.product.title"
+    />
+    <h3 class="text-green-700 text-lg p-2">{{ userProduct.product.title }}</h3>
+    <div class="flex items-center justify-between">
+      <span>count: {{ userProduct.count }} </span>
+      <span>price: {{ userProduct.price }}</span>
+    </div>
+  </div>
+  } }
+</div> -->
+
+<section class="bg-gray-200 p-7">
+  @for (item of userItem; track $index) { @for (userProduct of item.cartItems;
+  track userProduct._id) {
+  <div
+    class="grid sm:grid-cols-12 border shadow-lg border-green-600 rounded-3xl my-3 p-2 items-center space-x-10 bg-white gap-3"
+  >
+    <div class="col-span-1 m-3">
+      <img
+        class="w-full"
+        [src]="userProduct.product.imageCover"
+        [alt]="userProduct.product.title"
+      />
+    </div>
+
+    <div class="col-span-11 flex justify-around items-center">
+      <div class="col-span-4 ms-10">
+        <h2 class="text-2xl text-green-600">
+          title : {{ userProduct.product.title.split(" ", 2).join(" ") }}
+        </h2>
+      </div>
+
+      <div class="col-span-3">
+        <h2 class="text-lg text-green-600">cout : {{ userProduct.count }}</h2>
+      </div>
+
+      <div class="col-span-3">
+        <h2 class="text-lg text-green-600">
+          price : {{ userProduct.price }} EGP
+        </h2>
+      </div>
+    </div>
+  </div>
+  } }
+</section>

@@ -1,0 +1,14 @@
+<section class="pt-5">
+  <div class="contanier mx-auto">
+    <h2 class="text-green-600 text-3xl my-3 text-center">popular products</h2>
+    <div
+      class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 p-4"
+    >
+      @for ( product of allData.slice(0,10) ; track product._id) {
+
+      <app-card [product]="product" />
+
+      }
+    </div>
+  </div>
+</section>

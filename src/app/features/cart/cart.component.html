@@ -1,0 +1,71 @@
+<section class="bg-gray-200 p-7">
+  <div class="container mx-auto grid sm:grid-cols-12 gap-3 items-start">
+    <div class="col-span-8 border-green-600 rounded-2xl shadow-md bg-white p-4">
+      <div class="flex items-center space-x-1">
+        <h1 class="text-3xl text-green-600">Cart</h1>
+        <span class="text-green-800">
+          {{ productCart.products.length }} Items</span
+        >
+      </div>
+
+      @for (item of productCart.products; track item._id) {
+
+      <div
+        class="grid sm:grid-cols-12 border shadow-lg border-green-600 rounded-3xl my-3 p-2"
+      >
+        <div class="col-span-1 m-3">
+          <img
+            [src]="item.product.imageCover"
+            class="w-full"
+            [alt]="item.product.title"
+          />
+        </div>
+        <div class="col-span-11 flex justify-between items-center">
+          <div class="mx-3">
+            <h3 class="text-green-700">{{ item.product.title }}</h3>
+            <div class="flex items-center space-x-6 my-4">
+              <div
+                class="flex items-center space-x-10 py-1 px-2 bg-gray-100 rounded-xl shadow-sm border-1 border-green-600"
+              >
+                <button
+                  class="cursor-pointer"
+                  (click)="updateCount(item.product._id, item.count - 1)"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span>{{ item.count }}</span>
+                <button
+                  class="cursor-pointer"
+                  (click)="updateCount(item.product._id, item.count + 1)"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+              <button
+                (click)="removeItemCart(item.product._id)"
+                class="cursor-pointer hover:text-green-700 transition-all duration-200"
+              >
+                <i class="fas fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+          <span class="text-gray-600">{{ item.price * item.count }} EGP</span>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="col-span-4 border-green-600 rounded-2xl shadow-md bg-white p-4">
+      <h2 class="text-2xl text-green-600 mb-3">order summary</h2>
+      <div class="flex items-center justify-between">
+        <h3 class="text-green-800">totalPrice</h3>
+        <h4 class="text-green-800">{{ productCart.totalCartPrice }} EGP</h4>
+      </div>
+      <button
+        [routerLink]="['/checkout', productCart._id]"
+        class="w-full cursor-pointer mt-6 text-white bg-green-800 hover:bg-green-900-strong shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+      >
+        procced to checkOut
+      </button>
+    </div>
+  </div>
+</section>

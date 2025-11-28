@@ -1,0 +1,51 @@
+<section class="p-10">
+  <div class="contanier mx-auto">
+    <div class="grid sm:grid-cols-12 gap-4 items-center">
+      <div class="col-span-3">
+        <img
+          [src]="productDetails.imageCover"
+          class="w-full rounded-4xl"
+          [alt]="productDetails.title"
+        />
+      </div>
+      <div class="col-span-9">
+        <h2 class="text-2xl text-red-700">
+          {{ productDetails.title }}
+        </h2>
+        <p class="text-sm my-3 font-semibold">
+          {{ productDetails.description }}
+        </p>
+        <span class="text-lg mb-2.5 text-black">{{
+          productDetails.category.name
+        }}</span>
+        <div class="flex items-center justify-between my-4">
+          <span class="font-bold text-red-700"
+            >{{ productDetails.price }} EGP</span
+          >
+          <span
+            ><i class="fas fa-star text-yellow-500"></i>
+            {{ productDetails.ratingsAverage }}</span
+          >
+        </div>
+
+        <div class="w-1/5 my-2">
+          <owl-carousel-o [options]="customOptions">
+            @for (image of productDetails.images; track $index) {
+            <ng-template carouselSlide>
+              <img [src]="image" class="w-full" alt=" imageProductDetails " />
+            </ng-template>
+            }
+          </owl-carousel-o>
+        </div>
+
+        <button
+          (click)="addProtudtToCart(productDetails._id)"
+          type="button"
+          class="w-full rounded-xl cursor-pointer text-white bg-gradient-to-br from-purple-800 to-green-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5"
+        >
+          Add to cart +
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

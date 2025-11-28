@@ -1,0 +1,209 @@
+<section
+  class="p-4 border border-green-600 shadow-md bg-gray-100 md:w-1/2 mx-auto my-7"
+>
+  <h2 class="text-2xl text-green-700 my-6">Register Now :</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="submit()">
+    <div class="relative my-2">
+      <input
+        formControlName="name"
+        type="text"
+        id="name"
+        class="block rounded-t-base px-2.5 pb-2.5 pt-5 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+        placeholder=" "
+      />
+      <label
+        for="name"
+        class="text-green-500 absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+      >
+        Name :
+      </label>
+      @if (registerForm.get('name')?.errors &&
+      registerForm.get('name')?.touched) {
+
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <span class="sr-only">Danger</span>
+        <div class="">
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (registerForm.get('name')?.getError('required')) {
+            <li>input is required</li>
+
+            } @else if (registerForm.get('name')?.getError('minlength')) {
+            <li>At least 3 character</li>
+            } @else if (registerForm.get('name')?.getError('maxlength')) {
+            <li>At most 20 character</li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      }
+    </div>
+
+    <div class="relative my-2">
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
+        class="block rounded-t-base px-2.5 pb-2.5 pt-5 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+        placeholder=" "
+      />
+      <label
+        for="email"
+        class="text-green-500 absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+      >
+        Email :
+      </label>
+      @if (registerForm.get('email')?.errors &&
+      registerForm.get('email')?.touched) {
+
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (registerForm.get('name')?.getError('required')) {
+            <li>input is required</li>
+            } @if (registerForm.get('name')?.getError('email')) {
+            <li>pleace Enter The Correct Email</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="relative my-2">
+      <input
+        formControlName="password"
+        [type]="flag ? 'password' : 'text'"
+        id="password"
+        class="block rounded-t-base px-2.5 pb-2.5 pt-5 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+        placeholder=" "
+      />
+      <label
+        for="password"
+        class="text-green-500 absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+      >
+        password :
+      </label>
+      <span (click)="flag = !flag" class="absolute top-4 end-4 cursor-pointer">
+        @if (flag) {
+        <i class="fas fa-eye text-green-600"></i>
+        } @else { <i class="fas fa-eye-slash text-green-600"></i>}
+      </span>
+
+      @if (registerForm.get('password')?.errors &&
+      registerForm.get('password')?.touched) {
+
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (registerForm.get('password')?.getError('required')) {
+            <li>input is required</li>
+            } @else if (registerForm.get('password')?.getError('pattern')) {
+            <li>The Password must be 6 characters or more</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="relative my-2">
+      <input
+        formControlName="rePassword"
+        type="password"
+        id="rePassword"
+        class="block rounded-t-base px-2.5 pb-2.5 pt-5 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+        placeholder=" "
+      />
+      <label
+        for="rePassword"
+        class="text-green-500 absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+      >
+        rePassword :
+      </label>
+
+      @if (registerForm.errors && registerForm.get('rePassword')?.touched) {
+
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (registerForm.get('rePassword')?.getError('required')) {
+            <li>input is required</li>
+            } @else if (registerForm.get('rePassword')?.getError('pattern')) {
+            <li>Not match the password</li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="relative my-2">
+      <input
+        formControlName="phone"
+        type="tel"
+        id="phone"
+        class="block rounded-t-base px-2.5 pb-2.5 pt-5 w-full text-sm text-heading bg-neutral-secondary-medium border-0 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+        placeholder=" "
+      />
+      <label
+        for="phone"
+        class="text-green-500 absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+      >
+        Phone :
+      </label>
+
+      @if (registerForm.get('phone')?.errors &&
+      registerForm.get('phone')?.touched) {
+
+      <div
+        class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+        role="alert"
+      >
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-1.5 list-disc list-inside">
+            @if (registerForm.get('phone')?.getError('required')) {
+            <li>input is required</li>
+            } @else if (registerForm.get('phone')?.getError('pattern')) {
+            <li>
+              the phone number must be start (010,012,011,015) and it must less
+              than 12 numbers
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+    </div>
+
+    @if (msgError) {
+    <p class="text-center text-red-900 my-2 p-2 bg-red-200">{{ msgError }}</p>
+
+    }
+    <button
+      type="submit"
+      class="w-full cursor-pointer my-2 text-white bg-green-800 hover:bg-green-900-strong shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+    >
+      register @if (isloadinng) {
+      <i class="fas fa-spinner animate-spin"></i>
+      }
+    </button>
+  </form>
+</section>
