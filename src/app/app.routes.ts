@@ -60,6 +60,7 @@ export const routes: Routes = [
         path: 'details/:slug /:id',
         component: DetailsComponent,
         title: 'details',
+        data: { prerender: false },
       },
 
       {
